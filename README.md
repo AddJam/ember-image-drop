@@ -23,7 +23,7 @@ click to open the file picker as normal.
 In this example, `companyLogo` will be updated with the base64 image data when
 an image is selected.
 
-You'll should also update your Content Security Policy (usually in
+You should also update your Content Security Policy (usually in
 `config/environment.js`) to allow base64 image data to be the displayed.
 
 ```
