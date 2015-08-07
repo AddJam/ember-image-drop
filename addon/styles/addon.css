@@ -1,0 +1,46 @@
+.ember-image-drop {
+  height: 300px;
+  width: 300px;
+  background: transparent;
+  background-size: cover;
+  border: 5px dashed #ECF0F1;
+  position: relative;
+}
+
+.ember-image-drop p {
+  color: #a9a9a9;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.ember-image-drop p.placeholder {
+  font-size: 2em;
+}
+
+.ember-image-drop p.help-text {
+  font-size: 0.9em;
+}
+
+.ember-image-drop .text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+}
+
+.ember-image-drop input[type=file] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}

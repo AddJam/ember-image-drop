@@ -1,0 +1,1 @@
+export { default } from 'ember-image-drop/components/image-drop';
