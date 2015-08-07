@@ -39,5 +39,46 @@ export default Ember.Component.extend({
       };
       reader.readAsDataURL(event.target.files[0]);
     });
-  })
+  }),
+
+  dragOver(event) {
+    this.noopHandler(event);
+  },
+
+  dragExit(event) {
+    this.noopHandler(event);
+  },
+
+  dragEnter(event) {
+    this.noopHandler(event);
+  },
+
+  noopHandler(event) {
+    event.stopPropagation();
+    event.preventDefault();
+  },
+
+  drop(event) {
+    event.preventDefault();
+    let imageUrl = event.dataTransfer.getData('URL');
+    this.convertImgToBase64URL(imageUrl, (base64) => {
+      this.set('image', base64);
+    });
+  },
+
+  convertImgToBase64URL(url, callback, outputFormat) {
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function(){
+        var canvas = document.createElement('CANVAS'),
+        ctx = canvas.getContext('2d'), dataURL;
+        canvas.height = this.height;
+        canvas.width = this.width;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        callback(dataURL);
+        canvas = null;
+    };
+    img.src = url;
+  }
 });
