@@ -30,27 +30,19 @@ export default Ember.Component.extend({
   setup: Ember.on('willInsertElement', function() {
     const $input = this.$('input');
     $input.on('change', (event) => {
-      var reader = new FileReader();
-      reader.onload = (e) => {
-        var fileToUpload = e.target.result;
-        Ember.run(() => {
-          this.set('image', fileToUpload);
-        });
-      };
-      reader.readAsDataURL(event.target.files[0]);
+      this.handleFileDrop(event.target.files[0]);
     });
   }),
 
-  dragOver(event) {
-    this.noopHandler(event);
-  },
-
-  dragExit(event) {
-    this.noopHandler(event);
-  },
-
-  dragEnter(event) {
-    this.noopHandler(event);
+  handleFileDrop(file) {
+    var reader = new FileReader();
+    reader.onload = (e) => {
+      var fileToUpload = e.target.result;
+      Ember.run(() => {
+        this.set('image', fileToUpload);
+      });
+    };
+    reader.readAsDataURL(file);
   },
 
   noopHandler(event) {
@@ -60,7 +52,16 @@ export default Ember.Component.extend({
 
   drop(event) {
     event.preventDefault();
+    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+      return this.handleFileDrop(event.dataTransfer.files[0]);
+    }
+
     let imageUrl = event.dataTransfer.getData('URL');
+
+    if (!imageUrl) {
+      return;
+    }
+
     this.convertImgToBase64URL(imageUrl, (base64) => {
       this.set('image', base64);
     });
