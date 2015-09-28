@@ -9,6 +9,9 @@ export default Ember.Component.extend({
   helpText: "Drop your image here, or click to select",
   hideTextOnImage: true,
 
+  image: null,
+  file: null,
+
   textStyle: Ember.computed('image', function() {
     let textStyle = "";
     if (this.get('hideTextOnImage') && this.get('image')) {
@@ -17,7 +20,6 @@ export default Ember.Component.extend({
     return Ember.String.htmlSafe(textStyle);
   }),
 
-  image: null,
   style: Ember.computed('image', function() {
     let backgroundStyle = "";
     if (this.get('image')) {
@@ -35,6 +37,7 @@ export default Ember.Component.extend({
   }),
 
   handleFileDrop(file) {
+    this.set('file', file);
     var reader = new FileReader();
     reader.onload = (e) => {
       var fileToUpload = e.target.result;

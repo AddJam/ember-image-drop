@@ -37,6 +37,7 @@ You should also update your Content Security Policy (usually in
 Option Name      | Description                                         | Default Value
 -----------------|-----------------------------------------------------|---------------
 image            | Where we should bind the base64 data.               | `null`
+file             | Where we should bind the file object.               | `null`
 placeholder      | The large text shown in the drop area.              | `""`
 helpText         | The smaller text shown below the placeholder.       | `"Drop your image here, or click to select"`
 hideTextOnImage  | Should we hide the text when an image is present?   | `true`
