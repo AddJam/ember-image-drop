@@ -48,11 +48,6 @@ export default Ember.Component.extend({
     reader.readAsDataURL(file);
   },
 
-  noopHandler(event) {
-    event.stopPropagation();
-    event.preventDefault();
-  },
-
   drop(event) {
     event.preventDefault();
     if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
