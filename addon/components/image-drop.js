@@ -37,6 +37,10 @@ export default Ember.Component.extend({
   }),
 
   handleFileDrop(file) {
+    if (file == null) {
+      return;
+    }
+
     this.set('file', file);
     var reader = new FileReader();
     reader.onload = (e) => {
