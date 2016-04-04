@@ -33,8 +33,14 @@ export default Ember.Component.extend({
     const $input = this.$('input');
     $input.on('change', (event) => {
       this.handleFileDrop(event.target.files[0]);
+      this.resetInputElement($input);
     });
   }),
+
+  resetInputElement(inputElement) {
+    inputElement.wrap('<form>').closest('form').get(0).reset();
+    inputElement.unwrap();
+  },
 
   handleFileDrop(file) {
     if (file == null) {
