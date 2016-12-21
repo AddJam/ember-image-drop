@@ -1,6 +1,6 @@
 {
   "name": "ember-image-drop",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "A place to drop images, with immediate preview. You get base64 data back.",
   "directories": {
     "doc": "doc",
